@@ -1,0 +1,12 @@
+.row-group {
+    border-top: solid;
+    border-left: solid;
+    border-color:cadetblue;
+    display:  inline-grid;
+    width: fit-content;
+    height: fit-content;
+}
+.row {
+    margin: 0px;
+    padding: 0px;
+}

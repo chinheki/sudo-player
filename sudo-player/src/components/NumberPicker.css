@@ -1,0 +1,14 @@
+.picker-board {
+    border-style: solid;
+    border-color:teal;
+    display: grid;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+}
+
+.picker-row {
+    display:  inline-block;
+    margin: 0px;
+    padding: 0px;
+}

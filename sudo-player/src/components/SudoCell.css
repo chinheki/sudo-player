@@ -1,0 +1,33 @@
+.sudo-cell {
+    border-top: solid;
+    border-left: solid;
+    height: 50px;
+    width: 50px;
+    border-color: rgb(186, 219, 207);
+    font-size: 40px;
+    text-align: center;
+}
+.close-button{
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    background-color:unset;
+    color: cadetblue;
+    border: 0ch;
+    outline:none;
+}
+.sudo-cell-div {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+.number-picker-board{
+    position: absolute;
+}
+.number-picker-close{
+    position: absolute;
+}
+.square{
+    width: 24px;
+    height: 24px;
+}

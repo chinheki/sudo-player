@@ -1,0 +1,21 @@
+.board {
+    border-style: solid;
+    border-color:teal;
+    display: grid;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+}
+.board-div {
+    width: 100%;
+    height: 100%;
+}
+.board-row {
+    display:  inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+.calc-btn{
+    width: 100px;
+    height: 40px;
+}
