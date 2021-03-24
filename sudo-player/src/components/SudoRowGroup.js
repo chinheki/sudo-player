@@ -19,6 +19,7 @@ import './SudoRowGroup.css'
         y={this.props.y*3+y}
         updateInitNums={this.props.updateInitNums}
         update={this.props.update}
+        updateTime={this.props.updateTime}
         />
       );
     }

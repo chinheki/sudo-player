@@ -33,7 +33,7 @@ export default class SudoCell extends Component {
     }
 
     shouldComponentUpdate(nextprops){
-      if(nextprops.update !== this.props.update){
+      if(nextprops.updateTime !== this.props.updateTime && Object.keys(nextprops.update).length>0){
         Object.keys(nextprops.update).forEach(key=>{
           var {x,y,value}=nextprops.update[key]
           if(x===this.state.x && y===this.state.y){

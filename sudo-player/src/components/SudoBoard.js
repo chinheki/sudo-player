@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import SudoRowGroup from './SudoRowGroup'
 import './SudoBoard.css'
 import {calcSudoNums} from '../utils/SudoUtils';
-import {getGroupNumFromXy,getIdInGroupFromXy} from '../utils/IdUtils';
+import {getAFromXy,getBFromXy} from '../utils/IdUtils';
 
  export default class SudoBoard extends Component {
   constructor(props) {
     super(props);
     this.state={
-      resultToUpdate:{}
+      resultToUpdate:{},
+      updateTime:0
     }
     this.initNumsGroups=[
       [0,0,0,0,0,0,0,0,0],
@@ -58,7 +59,7 @@ import {getGroupNumFromXy,getIdInGroupFromXy} from '../utils/IdUtils';
   
   updateInitNums(x,y,value){
     this.initNumsXy[x][y]=Number(value);
-    this.initNumsGroups[getGroupNumFromXy(x,y)][getIdInGroupFromXy(x,y)]=Number(value);
+    this.initNumsGroups[getAFromXy(x,y)][getBFromXy(x,y)]=Number(value);
   }
 
     renderSquare(x,y) {
@@ -68,6 +69,7 @@ import {getGroupNumFromXy,getIdInGroupFromXy} from '../utils/IdUtils';
           y={y}
           updateInitNums={this.updateInitNums.bind(this)}
           update={this.state.resultToUpdate}
+          updateTime={this.state.updateTime}
           
         />
       );
@@ -79,9 +81,8 @@ import {getGroupNumFromXy,getIdInGroupFromXy} from '../utils/IdUtils';
       var result=calcSudoNums(this.initNumsXy,this.initNumsGroups)
       if(result===false){
         window.alert("NO ANSWER!!!")
-      }else{
-        this.setState({resultToUpdate:result})
-
+      }else if(Object.keys(result).length>0){
+        this.setState({resultToUpdate:result,updateTime:Date.now()})
       }
       console.log(result)
     }
