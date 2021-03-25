@@ -37,7 +37,7 @@ export default class SudoCell extends Component {
         Object.keys(nextprops.update).forEach(key=>{
           var {x,y,value}=nextprops.update[key]
           if(x===this.state.x && y===this.state.y){
-            this.calcToUpdate(value)
+            this.calcToUpdate(Number(value))
           }
         })
       return false

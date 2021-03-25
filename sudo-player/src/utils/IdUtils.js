@@ -20,8 +20,8 @@ export function getUniqId(x,y){
 
 export function getPairNumsId(nums){
     if(nums[0]>nums[1]){
-        return String(nums[1])+String(nums[0])
+        return String(nums[1]).concat(String(nums[0]))
     }else{
-        return String(nums[0])+String(nums[1])
+        return String(nums[0]).concat(String(nums[1]))
     }
 }

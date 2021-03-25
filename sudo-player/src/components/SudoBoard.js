@@ -22,17 +22,7 @@ import {getAFromXy,getBFromXy} from '../utils/IdUtils';
       [0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0],
     ];
-//     this.initNumsGroups=[
-//       [0, 0, 0, 0, 0, 0, 9, 0, 0],
-//  [0, 9, 5, 3, 0, 0, 4, 0, 0],
-//  [0, 0, 0, 4, 0, 0, 5, 0, 0],
-//  [0, 1, 7, 0, 0, 0, 0, 3, 5],
-//  [8, 3, 2, 1, 0, 0, 9, 6, 0],
-//  [0, 0, 0, 0, 2, 0, 0, 0, 1],
-//  [1, 0, 0, 3, 0, 0, 0, 7, 6],
-//  [6, 0, 9, 5, 0, 0, 0, 0, 0],
-//  [0, 0, 7, 6, 8, 0, 0, 0, 0],
-//     ]
+
     this.initNumsXy=[
       [0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0],
@@ -44,17 +34,30 @@ import {getAFromXy,getBFromXy} from '../utils/IdUtils';
       [0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0],
     ];
-//     this.initNumsXy=[
-//     [0, 0, 0, 0, 9, 5, 0, 0, 0],
-//  [0, 0, 0, 3, 0, 0, 4, 0, 0],
-//  [9, 0, 0, 4, 0, 0, 5, 0, 0],
-//  [0, 1, 7, 8, 3, 2, 0, 0, 0],
-//  [0, 0, 0, 1, 0, 0, 0, 2, 0],
-//  [0, 3, 5, 9, 6, 0, 0, 0, 1],
-//  [1, 0, 0, 6, 0, 9, 0, 0, 7],
-//  [3, 0, 0, 5, 0, 0, 6, 8, 0],
-//  [0, 7, 6, 0, 0, 0, 0, 0, 0],
-// ];
+
+    // this.initNumsGroups=[
+    //   [0,9,0,4,0,0,0,0,8],
+    //   [0,3,7,0,0,0,0,1,0],
+    //   [0,0,0,0,0,0,9,0,0],
+    //   [0,0,0,6,0,4,5,0,0],
+    //   [4,0,0,0,8,0,0,0,1],
+    //   [0,0,6,1,0,3,0,0,0],
+    //   [0,0,1,0,0,0,0,0,0],
+    //   [0,4,0,0,0,0,5,6,0],
+    //   [6,0,0,0,0,2,0,3,0],
+    // ];
+
+    // this.initNumsXy=[
+    //   [0,9,0,0,3,7,0,0,0],
+    //   [4,0,0,0,0,0,0,0,0],
+    //   [0,0,8,0,1,0,9,0,0],
+    //   [0,0,0,4,0,0,0,0,6],
+    //   [6,0,4,0,8,0,1,0,3],
+    //   [5,0,0,0,0,1,0,0,0],
+    //   [0,0,1,0,4,0,6,0,0],
+    //   [0,0,0,0,0,0,0,0,2],
+    //   [0,0,0,5,6,0,0,3,0],
+    // ];
 }
   
   updateInitNums(x,y,value){
@@ -78,13 +81,14 @@ import {getAFromXy,getBFromXy} from '../utils/IdUtils';
     calcSudo(){
       console.log(this.initNumsGroups)
       console.log(this.initNumsXy)
-      var result=calcSudoNums(this.initNumsXy,this.initNumsGroups)
-      if(result===false){
+      var {numsToUpdate,numsXy,numsGroup}=calcSudoNums(this.initNumsXy,this.initNumsGroups)
+      if(numsToUpdate===false){
         window.alert("NO ANSWER!!!")
-      }else if(Object.keys(result).length>0){
-        this.setState({resultToUpdate:result,updateTime:Date.now()})
+      }else if(Object.keys(numsToUpdate).length>0){
+        this.setState({resultToUpdate:numsToUpdate,updateTime:Date.now()})
       }
-      console.log(result)
+      this.initNumsGroups=numsGroup
+      this.initNumsXy=numsXy
     }
 
     render() {
