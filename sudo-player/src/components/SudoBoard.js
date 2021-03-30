@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SudoRowGroup from './SudoRowGroup'
 import './SudoBoard.css'
 import {calcSudoNums} from '../utils/SudoUtils';
+import {loopToCalcSudoNums} from '../utils/JustLoopUtils';
 import {getAFromXy,getBFromXy} from '../utils/IdUtils';
 
  export default class SudoBoard extends Component {
@@ -11,6 +12,8 @@ import {getAFromXy,getBFromXy} from '../utils/IdUtils';
       resultToUpdate:{},
       updateTime:0
     }
+    this.initNumsXy={};
+    this.possibleNumsInX={}
     this.initNumsGroups=[
       [0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0],
@@ -79,16 +82,24 @@ import {getAFromXy,getBFromXy} from '../utils/IdUtils';
     }
 
     calcSudo(){
-      console.log(this.initNumsGroups)
-      console.log(this.initNumsXy)
-      var {numsToUpdate,numsXy,numsGroup}=calcSudoNums(this.initNumsXy,this.initNumsGroups)
+      var {numsToUpdate,numsXy,numsGroup,pNumsXy,possibleNumsInX}=calcSudoNums(this.initNumsXy,this.initNumsGroups)
       if(numsToUpdate===false){
         window.alert("NO ANSWER!!!")
-      }else if(Object.keys(numsToUpdate).length>0){
+      }
+      if(Object.keys(numsToUpdate).length>0){
         this.setState({resultToUpdate:numsToUpdate,updateTime:Date.now()})
       }
+      this.pNumsXy=pNumsXy
       this.initNumsGroups=numsGroup
       this.initNumsXy=numsXy
+      this.possibleNumsInX=possibleNumsInX
+    }
+
+    loopSudo(){
+      var {numsToUpdate2}=loopToCalcSudoNums(this.initNumsXy,this.initNumsGroups,this.pNumsXy,this.possibleNumsInX)
+      if(Object.keys(numsToUpdate2).length>0){
+        this.setState({resultToUpdate:numsToUpdate2,updateTime:Date.now()})
+      }
     }
 
     render() {
@@ -117,6 +128,12 @@ import {getAFromXy,getBFromXy} from '../utils/IdUtils';
               onClick={this.calcSudo.bind(this)}
             >
               CALC
+            </button>
+            <button
+              className="calc-btn"
+              onClick={this.loopSudo.bind(this)}
+            >
+              LOOP
             </button>
           </div>
         </div>

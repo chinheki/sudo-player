@@ -17,7 +17,7 @@ export function calcSudoNums(initNumsXy,initNumsGroups){
     numsGroup=initNumsGroups
     numsToUpdate={}
     findPossibleNumsForAll()
-    return {numsToUpdate,numsXy,numsGroup}
+    return {numsToUpdate,numsXy,numsGroup,pNumsXy,possibleNumsInX}
 }
 
 function findNextNullSpace(x,y){
@@ -145,15 +145,15 @@ function findPossibleNumsForAll(){
     findUniqPossibleNumsInX()
     findUniqPossibleNumsInY()
     // 如果有更新，说明现有逻辑还有解法，进行递归
-    // if(isUpdated){
+    if(isUpdated){
         // if(isUpdated && Object.keys(possibleNumsXy).length>0){
         isUpdated=false
         console.log("ROUND "+round+":ACTION FINISH")
         round+=1
-        // findPossibleNumsForAll()
-    // }else{
-        // return
-    // }
+        findPossibleNumsForAll()
+    }else{
+        return
+    }
 }
 
     // 排除横，竖，所处九宫格内存在的数字
